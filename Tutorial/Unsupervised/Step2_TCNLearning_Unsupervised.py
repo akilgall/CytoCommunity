@@ -20,7 +20,7 @@ Num_TCN = 9
 Num_Run = 20
 Num_Epoch = 3000
 Embedding_Dimension = 128
-Learning_Rate = 0.0001
+Learning_Rate = 0.001
 Loss_Cutoff = -0.6
 
 
@@ -154,17 +154,16 @@ while run_number <= Num_Run:  #Generate multiple independent runs for ensemble.
 
         ClusterAssignMatrix1 = TestModelResult[3][0, :, :]
         ClusterAssignMatrix1 = torch.softmax(ClusterAssignMatrix1, dim=-1)  #Checked, consistent with the built-in function "dense_mincut_pool".
-        ClusterAssignMatrix1 = ClusterAssignMatrix1.detach().numpy()
+        ClusterAssignMatrix1 = ClusterAssignMatrix1.cpu().detach().numpy()
         filename1 = RunFolderName + "/TCN_AssignMatrix1.csv"
         np.savetxt(filename1, ClusterAssignMatrix1, delimiter=',')
 
         ClusterAdjMatrix1 = TestModelResult[4][0, :, :]
-        ClusterAdjMatrix1 = ClusterAdjMatrix1.detach().numpy()
+        ClusterAdjMatrix1 = ClusterAdjMatrix1.cpu().detach().numpy()
         filename2 = RunFolderName + "/TCN_AdjMatrix1.csv"
         np.savetxt(filename2, ClusterAdjMatrix1, delimiter=',')
 
-        NodeMask = EachData.mask
-        NodeMask = np.array(NodeMask)
+        NodeMask = np.array(EachData.cpu().detach().mask)
         filename3 = RunFolderName + "/NodeMask.csv"
         np.savetxt(filename3, NodeMask.T, delimiter=',', fmt='%i')  #save as integers.
 

@@ -90,7 +90,7 @@ plt.close()
 
 
 ## Plot x/y map with "Cell_Type" coloring.
-CellType_plot = sns.scatterplot(x="x_coordinate", y="y_coordinate", data=target_graph_map, hue="Cell_Type", palette=sns.color_palette("husl", 30), alpha=1.0, s=20.0, legend="full")  # 30 colors at maximum.
+CellType_plot = sns.scatterplot(x="x_coordinate", y="y_coordinate", data=target_graph_map, hue="Cell_Type", palette="d3_category20", alpha=1.0, s=20.0, legend="full")  # 30 colors at maximum.
 # Hide all four spines
 CellType_plot.spines.right.set_visible(False)
 CellType_plot.spines.left.set_visible(False)
@@ -109,7 +109,7 @@ plt.savefig(CellType_fig_filename1)
 CellType_fig_filename2 = ThisStep_OutputFolderName + "CellType_" + Image_Name + ".png"
 plt.savefig(CellType_fig_filename2)
 plt.close()
-
+#sns.color_palette("husl", 30)
 
 ## Export result dataframe: "target_graph_map".
 TargetGraph_dataframe_filename = ThisStep_OutputFolderName + "ResultTable_" + Image_Name + ".csv"

@@ -11,7 +11,7 @@ from torch_geometric.data import Data, InMemoryDataset
 
 
 ## Hyperparameters
-InputFolderName = "./MERFISH-Brain_Input/"
+InputFolderName = "./BMS_Lung/"
 KNN_K = 69
 
 
